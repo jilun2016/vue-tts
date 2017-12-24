@@ -80,6 +80,8 @@
 
 <script>
   import AMap from 'vue-amap';
+  import * as axios from 'axios';
+  const BASE_URL = 'http://localhost:7777/tts';
   export default {
     data() {
       let self = this;
@@ -201,14 +203,14 @@
         _this.images = images
       },
       imgCropFilter: function(imageCode){
-        let result = 'Fo9D7-leb-x3A3rS6GsiEBQZ2On4';
+        let result = 'tts/xiangji.png';
         if (imageCode) {
           let array = imageCode.split(',');
           if(array.length > 0){
             result = array[0];
           }
         }
-        return 'https://cdns.mtscrm.com/' + result + '?imageView2/1/w/150/h/150'
+        return 'http://cdn2017.oss-cn-shenzhen.aliyuncs.com/' + result+"?x-oss-process=style/3232"
       },
       viewImage:function(index){
         let _this = this
@@ -236,24 +238,21 @@
         }
         if(files.length > 0) {
           _this.fullscreenLoading=true
-          _this.axios.get('v1/common/uptokens').then((res) => {
-            let data = res.data
-            let formData = new FormData()
-            formData.append('token', data.upToken)
-            formData.append('file', files[0])
-            //提交给七牛处理
-            _this.$axios.post('https://up.qbox.me/', formData).then((res) => {
-              let images = _this.images;
-              images.push(res.data.key);
-              _this.images = images;
-            }).catch((err) => {
-            })
+          let formData = new FormData()
+          formData.append('file', files[0])
+          let config = {
+            headers:{'Content-Type':'multipart/form-data'}
+          };
+          //提交给七牛处理
+          axios.post(BASE_URL+"/common/upload", formData,config).then((res) => {
+            let images = _this.images;
+            images.push(res.data.data.key);
+            _this.images = images;
           }).catch((err) => {
           })
           _this.fullscreenLoading=false
         }
       },
-
     }
   }
 

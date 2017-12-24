@@ -1,1 +1,4 @@
 cnpm install
+cnpm i element-ui -S
+cnpm install axios
+cnpm install mint-ui -S
