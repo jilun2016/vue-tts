@@ -3,13 +3,10 @@
     <div class="page-tab-container">
       <mt-tab-container class="page-tabbar-tab-container" v-model="active" swipeable>
         <mt-tab-container-item id="tab-container1">
-          this.paramReportId11
-          {{this.$route.params.reportId}}
-          this.paramReportId22
-          <mt-cell title="任务要求"
-                   :to="{ name: 'ReportTask', params: { reportId: this.paramReportId }}"
-                   is-link value="编写"></mt-cell>
-          <mt-cell title="厂况" to="/ReportUpload" is-link value="编写" ></mt-cell>
+          <mt-cell  isLink @click.native=showSubReport() title="任务要求" value="编写">
+          </mt-cell>
+          <mt-cell  isLink @click.native=showSubReportCK() title="厂况" value="编写">
+          </mt-cell>
           <mt-cell title="大货情况" to="/ReportUpload" is-link value="编写" ></mt-cell>
           <mt-cell title="抽样" to="/ReportUpload" is-link value="编写" ></mt-cell>
           <mt-cell title="包装" to="/ReportUpload" is-link value="编写" ></mt-cell>
@@ -30,12 +27,20 @@
     data() {
       return {
         active: 'tab-container1',
-        paramReportId: ''
+        paramReportId: '',
       };
+    },
+    methods:{
+      showSubReport(){
+        this.$router.push({name:'ReportTask', params: {reportId: this.paramReportId }})
+      },
+      showSubReportCK(){
+        this.$router.push({name:'ReportTask', params: {reportId: this.paramReportId }})
+      }
     },
     created: function (){
       this.paramReportId = this.$route.params.reportId
-    }
+    },
   };
 </script>
 

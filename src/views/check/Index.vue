@@ -31,11 +31,11 @@
           </el-col>
 
           <el-col :span="18" style="text-align:right; width:20vw;"  v-loading.fullscreen.lock="fullscreenLoading">
-              <p v-if="images.length < 1">
+              <p v-if="imageUrl == ''">
                 <img src="../../assets/img/xiangji.png" @click="addImange()">
               </p>
-              <p v-for="(item, index) in images" :key="index">
-                <img :src="imgCropFilter(item)">
+              <p v-if="imageUrl !== ''">
+                <img :src="imgCropFilter(imageUrl)" @click="addImange()" >
               </p>
             <input type="file" id="fileElem" accept="image/*" @change="choosePhoto($event)" hidden/>
           </el-col>
@@ -87,7 +87,7 @@
       let self = this;
       return {
         fullscreenLoading: false,
-        images: [],
+        imageUrl: '',
         dialogClose:false,
         showFileList:false,
         textarea: '',
@@ -196,37 +196,15 @@
           fileElem.click();
         }
       },
-      removeImage: function(index) {
-        let _this = this
-        let images = _this.images
-        images.splice(index, 1)
-        _this.images = images
-      },
       imgCropFilter: function(imageCode){
         let result = 'tts/xiangji.png';
         if (imageCode) {
           let array = imageCode.split(',');
           if(array.length > 0){
-            result = array[0];
+            result = imageCode;
           }
         }
         return 'http://cdn2017.oss-cn-shenzhen.aliyuncs.com/' + result+"?x-oss-process=style/3232"
-      },
-      viewImage:function(index){
-        let _this = this
-        let imgList =  []
-        let current = ''
-        _this.$lodash.forEach(_this.images,function(imageCode){
-          imgList.push(_this.imgFilter(imageCode))
-        })
-        if(_this.CLIENT_TYPE == 'wechart') {
-          _this.$wx.previewImage({
-            current:imgList[index],
-            urls: imgList
-          })
-        } else if(_this.CLIENT_TYPE == 'mtscrmApp'){
-          _this.$jsBridge.showImages(JSON.stringify(imgList), index)
-        }
       },
       choosePhoto: function(e){
         let _this = this;
@@ -237,17 +215,17 @@
           files = e.target.files;
         }
         if(files.length > 0) {
-          _this.fullscreenLoading=true
-          let formData = new FormData()
-          formData.append('file', files[0])
+          _this.fullscreenLoading=true;
+          let formData = new FormData();
+          formData.append('file', files[0]);
           let config = {
             headers:{'Content-Type':'multipart/form-data'}
           };
+          _this.fullscreenLoading=true;
           //提交给七牛处理
-          axios.post(BASE_URL+"/common/upload", formData,config).then((res) => {
-            let images = _this.images;
-            images.push(res.data.data.key);
-            _this.images = images;
+          axios.post(BASE_URL+"/v1/common/upload", formData,config).then((res) => {
+            _this.imageUrl = res.data;
+            _this.fullscreenLoading=false
           }).catch((err) => {
           })
           _this.fullscreenLoading=false

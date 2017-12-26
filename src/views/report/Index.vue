@@ -4,9 +4,7 @@
       <mt-tab-container  v-model="active">
         <mt-tab-container-item id="report1">
           <p v-for="(item, index) in list" :key="index">
-            <mt-cell :title="item.reportName"
-                     :to="{ name: 'ReportDetail', params: { reportId: item.reportId }}"
-                     is-link value="">
+            <mt-cell  isLink @click.native=showDetail(item.reportId) :title="item.reportName">
             </mt-cell>
           </p>
         </mt-tab-container-item>
@@ -16,7 +14,7 @@
 </template>
 
 <script>
-const BASE_URL = 'http://localhost:7777/tts';
+const BASE_URL = 'http://localhost:7777/tts/v1';
 import * as axios from 'axios';
 export default {
   data() {
@@ -40,7 +38,11 @@ export default {
         _this.list = res.data
       }).catch((err) => {
       })
+    },
+    showDetail(reportId){
+      this.$router.push({name:'ReportDetail', params: {reportId: reportId }})
     }
+
   },
   created: function (){
     this.loadData()
