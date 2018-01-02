@@ -81,7 +81,7 @@
 <script>
   import AMap from 'vue-amap';
   import * as axios from 'axios';
-  const BASE_URL = 'http://localhost:7777/tts';
+  const BASE_URL = 'http://localhost:7777/tts/v1';
   export default {
     data() {
       let self = this;

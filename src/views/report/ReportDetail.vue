@@ -35,7 +35,10 @@
         this.$router.push({name:'ReportTask', params: {reportId: this.paramReportId }})
       },
       showSubReportCK(){
-        this.$router.push({name:'ReportTask', params: {reportId: this.paramReportId }})
+        this.$router.push({name:'ReportCK', params: {reportId: this.paramReportId }})
+      },
+      showSubReportDH(){
+        this.$router.push({name:'ReportDH', params: {reportId: this.paramReportId }})
       }
     },
     created: function (){

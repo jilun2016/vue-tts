@@ -11,7 +11,8 @@ import check from '@/views/check'
 import report from '@/views/report'
 import ReportDetail from '@/views/report/ReportDetail'
 import ReportTask from '@/views/report/ReportTask'
-import ReportUpload from '@/views/report/ReportUpload'
+import ReportCK from '@/views/report/ReportCK'
+import ReportDH from '@/views/report/ReportDH'
 
 Vue.use(Router)
 
@@ -53,9 +54,14 @@ export default new Router({
           component: ReportTask
         },
         {
-          name: 'ReportUpload',
-          path: 'reportUpload',
-          component: ReportUpload
+          name: 'ReportCK',
+          path: 'reportCK',
+          component: ReportCK
+        },
+        {
+          name: 'ReportDH',
+          path: 'reportDH',
+          component: ReportDH
         },
         {
           name: 'Category',
