@@ -55,7 +55,7 @@
           sampleProportion: _this.sampleProportion,
           sampleCount: _this.sampleCount
         };
-        this.$ajax.put(_this.$BASE_URL+'/report/' +this.$route.params.reportId + '/task', param).then((res) => {
+        this.$ajax.post(_this.$BASE_URL+'/report/' +this.$route.params.reportId + '/task', param).then((res) => {
           _this.$router.replace({
             name: 'commentShare'
           });
