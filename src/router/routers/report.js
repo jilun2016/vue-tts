@@ -27,19 +27,19 @@ const routes = [{
     },
     {
       name: 'rp-ck-list', // 图文类 编辑 列表
-      path: 'ck/:reportId/list/:reportType',
+      path: 'ck/:reportId/list/:reportType/:reportName',
       component: CkList,
       meta: {title: '厂矿类编辑'}
     },
     {
       name: 'rp-ck-add', // 详情中各项编辑 2: 图文类 编辑
-      path: 'ck/:reportId/detail/:reportType',
+      path: 'ck/:reportId/detail/:reportType/:reportName',
       component: Ck,
       meta: {title: '图文详情新增'}
     },
     {
       name: 'rp-ck-edit', // 详情中各项编辑 2: 图文类 编辑
-      path: 'ck/:reportId/detail/:reportType/:reportDetailId',
+      path: 'ck/:reportId/detail/:reportType/:reportDetailId/:reportName',
       component: Ck,
       meta: {title: '图文详情编辑'}
     },

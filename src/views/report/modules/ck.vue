@@ -1,11 +1,11 @@
 <template>
   <div class="homeBox">
     <div class="localtion">
-      款号/型号：AJMY202SKLB
+      款号/型号：{{reportName}}
     </div>
     <div class="description">
       <div>
-        <p>工厂大门</p>
+        <p>{{type.editName}}</p>
         <textarea v-model="reportCKDesc" placeholder="如需要，可添加说明" rows="4"></textarea>
       </div>
     </div>
@@ -29,10 +29,15 @@
 
 <script>
   import {Toast} from 'mint-ui'
+  import {TYPE_CONFIF} from './typeConfig'
+
   export default {
     data() {
       return {
+        reportName: '',
+        reportType: '',
         fullscreenLoading: false,
+        type: {},
         images: [],
         reportCKDesc: ''
       };
@@ -59,7 +64,11 @@
           reportImages: _this.images,
           reportDesc: _this.reportCKDesc
         };
-        _this.$ajax.post(_this.$BASE_URL + '/report/item', param).then((res) => {
+        let url = _this.$BASE_URL + '/report/item'
+        if( _this.$route.params.reportDetailId){
+          url = url + '/' + _this.$route.params.reportDetailId
+        }
+        _this.$ajax.post(url, param).then((res) => {
         }).catch((err) => {
         })
       },
@@ -125,6 +134,14 @@
       }
     },
     created: function (){
+      let _this = this
+      this.reportName = this.$route.params.reportName
+      this.reportType = this.$route.params.reportType
+      TYPE_CONFIF.forEach(element => {
+        if(element.type == _this.reportType) {
+          _this.type = element
+        }
+      })
       if(this.$route.params.reportDetailId) {
         this.loadData()
       }

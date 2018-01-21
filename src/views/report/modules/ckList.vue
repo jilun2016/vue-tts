@@ -1,13 +1,15 @@
 <template>
     <div class="homeBox">
       <div class="localtion">
-        款号/型号：AJMY202SKLB
+        款号/型号：{{reportName}}
       </div>
       <template v-if="list && list.length" >
         <div class="list" v-for="(item, i) in list" :key="i">
             <div class="detail">
               <p class="title">
                 <!-- 工厂大门 - 1111 -->
+                {{type.editName ? ( type.editName + ' - ' ) : ''}}
+
                 {{item.reportDesc}}
               </p>
               <div class="img-list">
@@ -41,14 +43,18 @@
 
   <script>
     import {Toast} from 'mint-ui'
+    import {TYPE_CONFIF} from './typeConfig'
+
     export default {
       data() {
         return {
           emptyImg: require('@/assets/img/empty2.png'),
+          reportName: '',
           params: {
             reportId: '',
             reportType: '',
           },
+          type: {},
           list: [
             // {
             //   id: 1,
@@ -68,7 +74,7 @@
           item.isShow = !item.isShow
         },
         eachEdit(item) {
-          this.$router.push({name:'rp-ck-edit', params: {reportId: this.params.reportId, reportType: this.params.reportType, reportDetailId: item.reportDetailId}})
+          this.$router.push({name:'rp-ck-edit', params: {reportId: this.params.reportId, reportType: this.params.reportType, reportDetailId: item.reportDetailId, reportName: this.$route.params.reportName}})
         },
         eachDelete(item) {
           let _this = this
@@ -79,7 +85,7 @@
           })
         },
         addReportDetail() {
-          this.$router.push({name:'rp-ck-add', params: {reportId: this.params.reportId, reportType: this.params.reportType}})
+          this.$router.push({name:'rp-ck-add', params: {reportId: this.params.reportId, reportType: this.params.reportType, reportName: this.$route.params.reportName}})
         },
         initData() {
           let _this = this
@@ -93,8 +99,15 @@
         }
       },
       created() {
+        let _this = this
         this.params.reportId = this.$route.params.reportId
         this.params.reportType = this.$route.params.reportType
+        this.reportName = this.$route.params.reportName
+        TYPE_CONFIF.forEach(element => {
+          if(element.type == _this.$route.params.reportType) {
+            _this.type = element
+          }
+        })
         this.initData()
       }
     }

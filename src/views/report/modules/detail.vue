@@ -19,6 +19,7 @@
 
   <script>
     import {Toast, MessageBox} from 'mint-ui'
+    import {TYPE_CONFIF} from './typeConfig'
 
     export default {
       name: 'page-tab-container',
@@ -30,65 +31,20 @@
             reportId: '',
             reportName: '',
           },
-          formList: [
-            {
-              title: '任务要求',
-              type: 'report_rwyq'
-            },
-            {
-              title: '厂况',
-              type: 'report_ck'
-            },
-            {
-              title: '大货情况',
-              type: 'report_dhqk'
-            },
-            {
-              title: '抽样',
-              type: 'report_cy'
-            },
-            {
-              title: '包装',
-              type: 'report_bz'
-            },
-            {
-              title: '款式\型号',
-              type: 'report_ksxh'
-            },
-            {
-              title: '辅料',
-              type: 'report_fl'
-            },
-            {
-              title: '做工',
-              type: 'report_zg'
-            },
-            {
-              title: '尺寸',
-              type: 'report_cc'
-            },
-            {
-              title: '测试',
-              type: 'report_cs'
-            },
-            {
-              title: '综述',
-              type: 'report_zs'
-            }
-          ]
+          formList: TYPE_CONFIF
         };
       },
       methods:{
         itemClick(item) {
           switch (item.type){
             case 'report_rwyq':
-              this.$router.push({name:'rp-task', params: {reportId: this.params.reportId, reportType: item.type}})
+              this.$router.push({name:'rp-task', params: {reportId: this.params.reportId, reportType: item.type, reportName: this.params.reportName}})
               return;
             case 'report_zs':
-              this.$router.push({name:'rp-summary', params: {reportId: this.params.reportId, reportType: item.type}})
+              this.$router.push({name:'rp-summary', params: {reportId: this.params.reportId, reportType: item.type, reportName: this.params.reportName}})
               return;
             default:
-              this.$router.push({name:'rp-ck-list', params: {reportId: this.params.reportId, reportType: item.type}})
+              this.$router.push({name:'rp-ck-list', params: {reportId: this.params.reportId, reportType: item.type, reportName: this.params.reportName}})
           }
         },
         editName() {
