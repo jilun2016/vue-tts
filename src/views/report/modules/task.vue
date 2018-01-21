@@ -49,7 +49,8 @@
       submit: function(){
         let _this = this;
         let param = {
-          reportId: this.$route.params.reportId,
+          // reportId: this.$route.params.reportId,
+          reportName: this.$route.params.reportName,
           taskDesc: _this.taskDesc,
           orderCount: _this.orderCount,
           sampleProportion: _this.sampleProportion,
@@ -57,7 +58,7 @@
         };
         this.$ajax.post(_this.$BASE_URL+'/report/' +this.$route.params.reportId + '/task', param).then((res) => {
           _this.$router.replace({
-            name: 'commentShare'
+            name: 'rp-detail'
           });
         }).catch((err) => {
         })

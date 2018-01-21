@@ -72,7 +72,9 @@
         _this.$ajax.post(url, param).then((res) => {
           if(res && res.data && res.data.id) {
             Toast('保存成功')
-            window.history.go(-1)
+            _this.$router.replace({
+              name: 'rp-ck-list'
+            });
           }else{
             Toast('保存失败')
           }
