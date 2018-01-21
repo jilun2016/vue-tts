@@ -62,7 +62,7 @@
           reportId: this.$route.params.reportId,
           reportName: this.$route.params.reportName,
           reportType: this.$route.params.reportType,
-          reportImages: _this.images,
+          reportImages: _this.images.join(','),
           reportDesc: _this.reportCKDesc
         };
         let url = _this.$BASE_URL + '/report/item'
