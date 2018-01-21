@@ -49,12 +49,13 @@
       submit: function(){
         let _this = this;
         let param = {
+          reportId: this.$route.params.reportId,
           taskDesc: _this.taskDesc,
           orderCount: _this.orderCount,
           sampleProportion: _this.sampleProportion,
           sampleCount: _this.sampleCount
         };
-        this.$ajax.post(_this.$BASE_URL+'/report/' +this.$route.params.reportId + '/task', param).then((res) => {
+        this.$ajax.put(_this.$BASE_URL+'/report/' +this.$route.params.reportId + '/task', param).then((res) => {
           _this.$router.replace({
             name: 'commentShare'
           });

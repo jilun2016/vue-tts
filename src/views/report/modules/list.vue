@@ -21,6 +21,7 @@
     data() {
       return {
         active: 'report1',
+        openId: 123,
         list: []
       };
     },
@@ -32,7 +33,7 @@
       loadData: function () {
         let _this = this
         let params = [
-          'openId=' + 123
+          'openId=' + this.openId
         ];
         _this.$ajax.get(_this.$BASE_URL + '/report/reports?' + params.join('&')).then((res) => {
           _this.list.splice(0, _this.list.length)
@@ -59,7 +60,8 @@
             return !!(val)
           }
         }).then(({ value, action }) => {
-          _this.$ajax.put(`${_this.$BASE_URL}/report/${_this.params.reportId}`, {
+          _this.$ajax.post(`${_this.$BASE_URL}/report`, {
+            openId: _this.openId,
             reportName: value
           }).then((res)=>{
             Toast('新增成功');

@@ -105,7 +105,7 @@
               return !!(val)
             }
           }).then(({ value, action }) => {
-            _this.$ajax.post(`${_this.$BASE_URL}/report/${_this.params.reportId}`, {
+            _this.$ajax.put(`${_this.$BASE_URL}/report/${_this.params.reportId}`, {
               reportName: value
             }).then((res)=>{
               Toast('修改成功');
