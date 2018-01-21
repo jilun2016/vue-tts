@@ -60,7 +60,7 @@
         let _this = this;
         let param = {
           reportId: this.$route.params.reportId,
-          reportName: this.$route.params.reportName,
+          // reportName: this.$route.params.reportName,
           reportType: this.$route.params.reportType,
           reportImages: _this.images.join(','),
           reportDesc: _this.reportCKDesc
@@ -70,7 +70,14 @@
           url = url + '/' + _this.$route.params.reportDetailId
         }
         _this.$ajax.post(url, param).then((res) => {
+          if(res && res.data && res.data.id) {
+            Toast('保存成功')
+            window.history.go(-1)
+          }else{
+            Toast('保存失败')
+          }
         }).catch((err) => {
+          Toast('保存失败')
         })
       },
       addImange: function () {

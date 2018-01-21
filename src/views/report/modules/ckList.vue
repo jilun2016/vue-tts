@@ -13,7 +13,7 @@
                 {{item.reportDesc}}
               </p>
               <div class="img-list">
-                <img  v-for="(item, n) in item.reportImages" :key="n" :src="item"/>
+                <img  v-for="(item, n) in item.images" :key="n" :src="'http://cdn2017.oss-cn-shenzhen.aliyuncs.com/' + item"/>
                 <!-- <img src="http://cdn2017.oss-cn-shenzhen.aliyuncs.com/tts/2/4/9f2a38788b534bfb8f26783871d2f875.png" alt="">
                 <img src="http://cdn2017.oss-cn-shenzhen.aliyuncs.com/tts/2/4/9f2a38788b534bfb8f26783871d2f875.png" alt=""> -->
               </div>
@@ -80,6 +80,7 @@
           let _this = this
           _this.$ajax.delete(_this.$BASE_URL + `/report/item/${item.reportDetailId}`).then((res) => {
             Toast('删除成功')
+            _this.initData()
           }).catch((err) => {
             Toast(err.message || '删除失败')
           })
@@ -93,6 +94,7 @@
             // _this.list.splice(0, _this.list.length)
             res.data.forEach(element => {
               element.isShow = false
+              element.images = element.reportImages.split(',')
             });
             _this.list = res.data
           }).catch((err) => {
