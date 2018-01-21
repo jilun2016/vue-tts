@@ -60,6 +60,7 @@
         let _this = this;
         let param = {
           reportId: this.$route.params.reportId,
+          reportName: this.$route.params.reportName,
           reportType: this.$route.params.reportType,
           reportImages: _this.images,
           reportDesc: _this.reportCKDesc
