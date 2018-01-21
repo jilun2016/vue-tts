@@ -65,22 +65,31 @@
           reportImages: _this.images.join(','),
           reportDesc: _this.reportCKDesc
         };
-        let url = _this.$BASE_URL + '/report/item'
         if( _this.$route.params.reportDetailId){
-          url = url + '/' + _this.$route.params.reportDetailId
+          _this.$ajax.put(_this.$BASE_URL + '/report/item/' + _this.$route.params.reportDetailId, param).then((res) => {
+            if(res && res.data && res.data.id) {
+              Toast('更新成功')
+            }else{
+              Toast('更新失败')
+            }
+          }).catch((err) => {
+            Toast('更新失败')
+          })
+        }else{
+          _this.$ajax.post(_this.$BASE_URL + '/report/item', param).then((res) => {
+            if(res && res.data && res.data.id) {
+              Toast('新增成功')
+              _this.$router.replace({
+                name: 'rp-ck-list'
+              });
+            }else{
+              Toast('新增失败')
+            }
+          }).catch((err) => {
+            Toast('新增失败')
+          })
         }
-        _this.$ajax.post(url, param).then((res) => {
-          if(res && res.data && res.data.id) {
-            Toast('保存成功')
-            _this.$router.replace({
-              name: 'rp-ck-list'
-            });
-          }else{
-            Toast('保存失败')
-          }
-        }).catch((err) => {
-          Toast('保存失败')
-        })
+
       },
       addImange: function () {
         let fileElem = document.getElementById("fileElem");
