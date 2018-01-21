@@ -91,6 +91,9 @@
           let _this = this
           _this.$ajax.get(_this.$BASE_URL + `/report/${this.params.reportId}/${this.params.reportType}`).then((res) => {
             // _this.list.splice(0, _this.list.length)
+            res.data.forEach(element => {
+              element.isShow = false
+            });
             _this.list = res.data
           }).catch((err) => {
             console.log(err)
