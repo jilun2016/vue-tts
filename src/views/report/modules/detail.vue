@@ -65,9 +65,16 @@
               reportName: value
             }).then((res)=>{
               Toast('修改成功');
-              this.params.reportName = value
+              _this.params.reportName = value
+              _this.$router.replace({
+                name: 'rp-detail',
+                params: {
+                  reportId: _this.params.reportId,
+                  reportName: value
+                }
+              });
             }).catch(function(err){
-              console.log(err);
+              Toast('修改失败');
             });
           });
         }
@@ -75,7 +82,7 @@
       created: function (){
         this.params.reportId = this.$route.params.reportId
         this.params.reportName = this.$route.params.reportName
-      },
+      }
     };
   </script>
 

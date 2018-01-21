@@ -67,13 +67,16 @@
         };
         if( _this.$route.params.reportDetailId){
           _this.$ajax.put(_this.$BASE_URL + '/report/item/' + _this.$route.params.reportDetailId, param).then((res) => {
-            if(res && res.data && res.data.id) {
-              Toast('更新成功')
-            }else{
-              Toast('更新失败')
-            }
+            Toast('更新成功')
+            _this.loadData()
+            // if(res && res.data && res.data.id) {
+            //   Toast('更新成功')
+            // }else{
+            //   Toast('更新失败')
+            // }
           }).catch((err) => {
-            Toast('更新失败')
+            _this.loadData()
+            // Toast('更新失败')
           })
         }else{
           _this.$ajax.post(_this.$BASE_URL + '/report/item', param).then((res) => {
