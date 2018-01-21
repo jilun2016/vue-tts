@@ -51,8 +51,8 @@
         let _this = this
         _this.$ajax.get(_this.$BASE_URL+'/report/item/' +this.$route.params.reportDetailId).then((res) => {
           let data = res.data
-          _this.images = (data.images ? data.images.split(',') : []);
-          _this.reportCKDesc = data.reportCKDesc
+          _this.images = (data.reportImages ? data.reportImages.split(',') : []);
+          _this.reportCKDesc = data.reportDesc
         }).catch((err) => {
         })
       },
