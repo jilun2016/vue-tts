@@ -8,10 +8,14 @@ import Content from '@/views/category/Content'
 import Me from '@/views/me'
 import TTS from '@/views/TTS'
 import check from '@/views/check'
+
+import reportRoute from '@/router/routers/report'
+
 import report from '@/views/report'
 import ReportDetail from '@/views/report/ReportDetail'
 import ReportTask from '@/views/report/ReportTask'
 import ReportCK from '@/views/report/ReportCK'
+import ReportCKList from '@/views/report/ReportCKList'
 import ReportDH from '@/views/report/ReportDH'
 
 Vue.use(Router)
@@ -38,10 +42,11 @@ export default new Router({
           path: 'check',
           component: check
         },
+        ...reportRoute, //报告
         {
           name: '报告',
           path: 'report',
-          component: report,
+          component: report
         },
         {
           name: 'ReportDetail',
@@ -57,6 +62,11 @@ export default new Router({
           name: 'ReportCK',
           path: 'reportCK',
           component: ReportCK
+        },
+        {
+          name: 'ReportCKList',
+          path: 'reportCKList',
+          component: ReportCKList
         },
         {
           name: 'ReportDH',

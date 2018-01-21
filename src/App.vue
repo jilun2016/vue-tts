@@ -11,4 +11,7 @@ export default {
 </script>
 
 <style>
+  .hide{
+    display: none !important;
+  }
 </style>

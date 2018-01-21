@@ -16,7 +16,7 @@
           <img :src="imgCropFilter(item)">
         </li>
         <li v-if="images.length < 5">
-          <img src="../../assets/img/xiangji2.png" @click="addImange()">
+          <img src="../../../assets/img/xiangji2.png" @click="addImange()">
         </li>
       </ul>
       <input type="file" id="fileElem" accept="image/*" @change="choosePhoto($event)" hidden/>
@@ -28,10 +28,7 @@
 </template>
 
 <script>
-  import * as axios from 'axios';
-
-  const BASE_URL = 'http://localhost:7777/tts/v1';
-
+  import {Toast} from 'mint-ui'
   export default {
     data() {
       return {
@@ -47,7 +44,7 @@
       },
       getTaskCKDetail: function () {
         let _this = this
-        axios.get(BASE_URL+'/report/' +this.$route.params.reportId + '/ck').then((res) => {
+        _this.$ajax.get(_this.$BASE_URL+'/report/item/' +this.$route.params.reportDetailId).then((res) => {
           let data = res.data
           _this.images = (data.images ? data.images.split(',') : []);
           _this.reportCKDesc = data.reportCKDesc
@@ -57,10 +54,12 @@
       submit: function () {
         let _this = this;
         let param = {
-          images: _this.images,
-          reportCKDesc: _this.reportCKDesc
+          reportId: this.$route.params.reportId,
+          reportType: this.$route.params.reportType,
+          reportImages: _this.images,
+          reportDesc: _this.reportCKDesc
         };
-        axios.post(BASE_URL + '/report/' + this.$route.params.reportId + '/CK', param).then((res) => {
+        _this.$ajax.post(_this.$BASE_URL + '/report/item', param).then((res) => {
         }).catch((err) => {
         })
       },
@@ -115,7 +114,7 @@
           };
           _this.fullscreenLoading = true;
           //提交给七牛处理
-          axios.post(BASE_URL + "/v1/common/upload", formData, config).then((res) => {
+          _this.$ajax.post(_this.$BASE_URL + "/common/upload", formData, config).then((res) => {
             let images = _this.images;
             images.push(res.data);
             _this.images = images;
@@ -126,7 +125,9 @@
       }
     },
     created: function (){
-      this.loadData()
+      if(this.$route.params.reportDetailId) {
+        this.loadData()
+      }
     }
   }
 </script>
@@ -149,11 +150,13 @@
     top: 0px;
     font-size: 14px;
     background-color: #F2F2F8;
+    overflow-y: scroll;
   }
 
   .localtion {
     color: #666;
     padding: 15px;
+    background: #eeeef3;
   }
 
   .description {
@@ -188,7 +191,9 @@
   }
   .card-content-imglist {
     padding: 15px;
+    margin-bottom: 45px;
   }
+
   .card-content-imglist ul {
     width: 100%;
     position: relative;
@@ -216,7 +221,7 @@
     width: 1.8rem;
     height: 1.8rem;
     display: inline-block;
-    background-image: url(../../assets/img/cancel.png);
+    background-image: url(../../../assets/img/cancel.png);
     background-size: 100% 100%;
     position: relative;
     margin-bottom: -1.8rem;

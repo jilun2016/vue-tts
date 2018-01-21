@@ -44,7 +44,7 @@
     img: '../../../static/fruit.png',
     title: 'AQL计算'
   }, {
-    url: '../report',
+    url: '../rp/list',
     img: '../../../static/vegetables.png',
     title: '报告',
   }]
