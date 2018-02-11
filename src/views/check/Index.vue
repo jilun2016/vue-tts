@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <div class="amap-page-container">
       <el-amap vid="amapDemo" :zoom="zoom" :center="center" class="amap-demo" :plugin="plugin" :events="events">
         <el-amap-info-window :position="mywindow.position" :content="address" :visible="mywindow.visible" :events="mywindow.events"></el-amap-info-window>
@@ -29,7 +28,6 @@
             </div>
           </el-dialog>
           </el-col>
-
           <el-col :span="18" style="text-align:right; width:20vw;"  v-loading.fullscreen.lock="fullscreenLoading">
               <p v-if="imageUrl == ''">
                 <img src="../../assets/img/xiangji.png" @click="addImange()">
@@ -40,12 +38,13 @@
             <input type="file" id="fileElem" accept="image/*" @change="choosePhoto($event)" hidden/>
           </el-col>
         </el-row>
+        邮箱地址:<input class = "localtion" style="text-align:left; width:80vw;" type="text" v-model="checkEmail"  placeholder="请输入发送邮箱地址"><br>
       </el-form>
     </div>
     <hr />
     <p />
     <div class="but-group">
-      <el-button type="primary" style="width:100vw;" >成功按钮</el-button>
+      <el-button type="primary" style="width:100vw;" @click.native="submit">成功按钮</el-button>
     </div>
   </div>
 
@@ -135,7 +134,7 @@
         lng: 0,
         lat: 0,
         address: '',
-
+        checkEmail: '',
         marker: {
           position: [113.36114, 22.31889],
           events: {
@@ -223,13 +222,26 @@
           };
           _this.fullscreenLoading=true;
           //提交给七牛处理
-          axios.post(BASE_URL+"/v1/common/upload", formData,config).then((res) => {
+          axios.post(BASE_URL+"/common/upload", formData,config).then((res) => {
             _this.imageUrl = res.data;
             _this.fullscreenLoading=false
           }).catch((err) => {
           })
           _this.fullscreenLoading=false
         }
+      },
+      submit: function(){
+        let _this = this
+        let param = {
+          checkRemark: _this.textarea,
+          checkImage: _this.imageUrl,
+          address: _this.address,
+          checkEmail: _this.checkEmail,
+          openId: '123'
+        }
+        axios.post(BASE_URL+"/check", param).then((res) => {
+        }).catch((err) => {
+        })
       },
     }
   }
