@@ -9,8 +9,9 @@ import Me from '@/views/me'
 import TTS from '@/views/TTS'
 import check from '@/views/check'
 
+import aql from '@/views/aql'
+import caculate from '@/views/aql/caculate'
 import reportRoute from '@/router/routers/report'
-
 import report from '@/views/report'
 import ReportDetail from '@/views/report/ReportDetail'
 import ReportTask from '@/views/report/ReportTask'
@@ -72,6 +73,16 @@ export default new Router({
           name: 'ReportDH',
           path: 'reportDH',
           component: ReportDH
+        },
+        {
+          name: 'aql',
+          path: 'aql',
+          component: aql
+        },
+        {
+          name: 'caculate',
+          path: 'caculate',
+          component: caculate
         },
         {
           name: 'Category',

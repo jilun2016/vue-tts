@@ -40,7 +40,7 @@
     img: '../../../static/vegetables.png',
     title: '打卡'
   }, {
-    url: '/aql',
+    url: '../aql',
     img: '../../../static/fruit.png',
     title: 'AQL计算'
   }, {
