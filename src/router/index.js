@@ -8,6 +8,8 @@ import Content from '@/views/category/Content'
 import Me from '@/views/me'
 import TTS from '@/views/TTS'
 import check from '@/views/check'
+import wxerror from '@/views/error/wx-error'
+import wxlogin from '@/views/login/wx-login'
 
 import aql from '@/views/aql'
 import caculate from '@/views/aql/caculate'
@@ -42,6 +44,16 @@ export default new Router({
           name: '打卡',
           path: 'check',
           component: check
+        },
+        {
+          name: 'wxerror',
+          path: '/wxerror',
+          component: wxerror
+        },
+        {
+          name: 'wxlogin',
+          path: '/wxlogin',
+          component: wxlogin
         },
         ...reportRoute, //报告
         {

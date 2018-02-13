@@ -82,12 +82,23 @@
         }
         return 'http://cdn2017.oss-cn-shenzhen.aliyuncs.com/' + result;
       },
+      // imgCropFilter: function (imageCode) {
+      //   let result = 'tts/xiangji.png';
+      //   if (imageCode) {
+      //     let array = imageCode.split(',');
+      //     if (array.length > 0) {
+      //       result = array[0];
+      //     }
+      //   }
+      //   return 'http://cdn2017.oss-cn-shenzhen.aliyuncs.com/' + result;
+      // },
       removeImage: function (index) {
         let _this = this
         let images = _this.images
         images.splice(index, 1)
         _this.images = images
       },
+      // 预览图片并旋转功能
       viewImage: function (index) {
         let _this = this
         let imgList = []
@@ -95,10 +106,10 @@
         _this.$lodash.forEach(_this.images, function (imageCode) {
           imgList.push(_this.imgFilter(imageCode))
         })
-        _this.$wx.previewImage({
-          current: imgList[index],
-          urls: imgList
-        })
+        // _this.$wx.previewImage({
+        //   current: imgList[index],
+        //   urls: imgList
+        // })
       },
       choosePhoto: function (e) {
         let _this = this;

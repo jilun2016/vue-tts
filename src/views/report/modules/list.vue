@@ -16,12 +16,13 @@
 
 <script>
   import {Toast, MessageBox} from 'mint-ui'
+  import * as util from '@/util'
 
   export default {
     data() {
       return {
         active: 'report1',
-        openId: 123,
+        openId: util.getCookie('wxAppId') || '1234',
         list: []
       };
     },
