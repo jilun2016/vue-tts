@@ -1,9 +1,5 @@
 <template>
   <div class="home">
-    <!-- 轮播图 -->
-    <div class="swiper">
-      <swiper :list="swipers" auto style="width:100%;margin:0 auto;" height="180px" dots-class="custom-bottom" dots-position="center"></swiper>
-    </div>
     <!-- 导航 -->
     <div class="nav">
       <div class="matrix-nav">
@@ -20,20 +16,6 @@
 <script>
   import { Swiper, SwiperItem, Cell, Marquee, MarqueeItem, Flexbox, FlexboxItem, Divider, Scroller } from 'vux'
   import ShopNav from '@/components/ShopNav'
-
-  const baseList = [{
-    url: 'javascript:',
-    img: 'https://static.vux.li/demo/1.jpg',
-    title: '送你一朵fua'
-  }, {
-    url: 'javascript:',
-    img: 'https://static.vux.li/demo/2.jpg',
-    title: '送你一辆车'
-  }, {
-    url: 'javascript:',
-    img: 'https://static.vux.li/demo/3.jpg',
-    title: '送你一次旅行'
-  }]
 
   const navList = [{
     url: '../check',
@@ -52,7 +34,6 @@
   export default {
     data () {
       return {
-        swipers: baseList,
         navList: navList,
         demo02_index: 1,
         goToCell: '跳转',
