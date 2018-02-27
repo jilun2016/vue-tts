@@ -33,12 +33,15 @@
       },
       loadData: function () {
         let _this = this
-        let params = [
-          'openId=' + this.openId
-        ];
-        _this.$ajax.get(_this.$BASE_URL + '/report/reports?' + params.join('&')).then((res) => {
+        // let params = [
+        //   'openId=' + this.openId
+        // ];
+        // _this.$ajax.get(_this.$BASE_URL + '/report/reports?' + params.join('&')).then((res) => {
+        _this.$ajax.get(_this.$BASE_URL + '/report/reports').then((res) => {
           _this.list.splice(0, _this.list.length)
-          _this.list = res.data
+          if (res.data && res.data.length) {
+            _this.list = res.data
+          }
         }).catch((err) => {})
       },
       showDetail(reportId, reportName) {
@@ -62,7 +65,7 @@
           }
         }).then(({ value, action }) => {
           _this.$ajax.post(`${_this.$BASE_URL}/report`, {
-            openId: _this.openId,
+            // openId: _this.openId,
             reportName: value
           }).then((res)=>{
             Toast('新增成功');
