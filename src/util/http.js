@@ -65,7 +65,7 @@ export default {
       method: 'post',
       baseURL: BASE_API_URL,
       url,
-      data: qs.stringify(data),
+      data: data,
       timeout: 30000,
       headers: {
         'X-Requested-With': 'XMLHttpRequest',
