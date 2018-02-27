@@ -12,7 +12,7 @@
 </template>
 
 <script>
-  const BASE_URL = 'http://localhost:7777/tts/v1';
+  const BASE_URL = 'https://tts.jilunxin.com/tts/v1';
   import * as axios from 'axios';
   export default {
     data() {

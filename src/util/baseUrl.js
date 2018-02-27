@@ -1,1 +1,1 @@
-export const BASE_API_URL = 'http://localhost:7777/tts/v1'
+export const BASE_API_URL = 'https://tts.jilunxin.com/tts/v1'

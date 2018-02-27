@@ -3,7 +3,7 @@ const Home = () => import('@/views/report/Home')
 const List = () => import('@/views/report/modules/list')
 const Detail = () => import('@/views/report/modules/detail')
 
-const CkList = () => import('@/views/report/modules/cklist')
+const CkList = () => import('@/views/report/modules/ckList')
 const Ck = () => import('@/views/report/modules/ck')
 const Task = () => import('@/views/report/modules/task')
 const Summary = () => import('@/views/report/modules/summary')
