@@ -21,15 +21,16 @@ function checkStatus (response) {
   // loading
   // 如果http状态码正常，则直接返回数据
   console.log('接口出参：', response)
-  if (response && (response.status === 200 || response.status === 304 || response.status === 400 || response.status === 401)) {
-    return response
-    // 如果不需要除了data之外的数据，可以直接 return response.data
-  }
-  // 异常状态下，把错误信息返回去
-  return {
-    status: -404,
-    msg: '网络异常'
-  }
+  return response
+  // if (response && (response.status === 200 || response.status === 304 || response.status === 400 || response.status === 401 || response.status === 415 )) {
+  //   return response
+  //   // 如果不需要除了data之外的数据，可以直接 return response.data
+  // }
+  // // 异常状态下，把错误信息返回去
+  // return {
+  //   status: -404,
+  //   msg: '网络异常'
+  // }
 }
 
 function checkCode (res) {
@@ -44,7 +45,11 @@ function checkCode (res) {
     alert(res.msg)
   }
 
-  if (res.status === 400 || res.status === 401) {
+  // if (res.status === 400 || res.status === 401) {
+  //   alert(res.data.errorMessage)
+  // }
+
+  if (res.data && res.data.errorMessage) {
     alert(res.data.errorMessage)
   }
 
