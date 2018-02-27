@@ -10,7 +10,10 @@ import 'mint-ui/lib/style.css'
 import * as util from '@/util'
 import MintUI from 'mint-ui'
 
-import axios from 'axios'
+// import axios from 'axios'
+import http from '@/util/http'
+import {BASE_API_URL} from '@/util/baseUrl'
+
 Vue.config.productionTip = false
 
 
@@ -23,8 +26,8 @@ Vue.use(ElementUI);
 
 Vue.use(MintUI)
 
-Vue.prototype.$ajax = axios
-Vue.prototype.$BASE_URL = 'http://localhost:7777/tts/v1'
+Vue.prototype.$ajax = http
+Vue.prototype.$BASE_URL = BASE_API_URL
 
 // 拦截未登陆情况
 router.beforeEach((to, from, next) => {
