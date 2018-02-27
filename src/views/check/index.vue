@@ -80,7 +80,7 @@
 <script>
   import AMap from 'vue-amap';
   import * as axios from 'axios';
-  const BASE_URL = 'https://tts.jilunxin.com/tts/v1';
+  const BASE_URL = 'https://tts.jilunxing.com/tts/v1';
   export default {
     data() {
       let self = this;
