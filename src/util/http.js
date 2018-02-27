@@ -36,7 +36,8 @@ function checkStatus (response) {
 function checkCode (res) {
   // 如果未授权跳转授权页 todo
   if (res.data && res.data.errorCode && res.data.errorCode === '1011') {
-    window.location.href = res.data.errorMessage
+    var redirectUrl =  res.data.errorMessage.replace('WxRedirectUrl', encodeURIComponent(window.location.href))
+    window.location.href = redirectUrl
     return
   }
 
