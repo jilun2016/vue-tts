@@ -332,7 +332,7 @@
       position: fixed;
       width: 100%;
       height: 87%;
-      top: 45px;
+      top: 0;
       font-size: 14px;
       background-color: #F2F2F8;
       overflow-y: scroll;
@@ -345,7 +345,7 @@
 
     .localtion{
       background: #eeeef3;
-      position: fixed;
+      position: absolute;
       width: 100%;
       top: 0;
     }
@@ -407,6 +407,7 @@
     }
 
     .empty-box{
+      margin-top: 45px;
       text-align: center;
       img{
         width: 40%;
