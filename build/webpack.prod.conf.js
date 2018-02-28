@@ -92,6 +92,14 @@ var webpackConfig = merge(baseWebpackConfig, {
         to: config.build.assetsSubDirectory,
         ignore: ['.*']
       }
+    ]),
+    // 静态资源拷贝到根目录下
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve(__dirname, '../src/static'),
+        to: config.build.assetsRoot,
+        ignore: ['.*']
+      }
     ])
   ]
 })

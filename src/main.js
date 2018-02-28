@@ -14,6 +14,9 @@ import MintUI from 'mint-ui'
 import http from '@/util/http'
 import {BASE_API_URL} from '@/util/baseUrl'
 
+// 微信分享
+import '@/util/wx-share'
+
 Vue.config.productionTip = false
 
 

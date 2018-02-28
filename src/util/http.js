@@ -34,10 +34,16 @@ function checkStatus (response) {
 }
 
 function checkCode (res) {
-  // 如果未授权跳转授权页 todo
+  // 如果未授权跳转授权页
   if (res.data && res.data.errorCode && res.data.errorCode === '1011') {
     var redirectUrl =  res.data.errorMessage.replace('WxRedirectUrl', encodeURIComponent(window.location.href))
     window.location.href = redirectUrl
+    return
+  }
+
+  // 如果未关注公众号 先关注公众号
+  if (res.data && res.data.errorCode && res.data.errorCode === 'T100004') {
+    window.location.href =  '/static/qrCode.html'
     return
   }
 
