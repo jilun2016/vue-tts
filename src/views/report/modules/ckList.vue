@@ -348,11 +348,13 @@
       position: absolute;
       width: 100%;
       top: 0;
+      box-sizing: border-box;
     }
 
     .list{
       background: #fff;
       border-bottom: 1px solid #dfdfdf;
+      margin-top: 45px;
 
       .title{
         margin-bottom: 15px;
@@ -396,8 +398,8 @@
     }
 
     .bottom-btn {
-      position: absolute;
-      bottom: 0;
+      position: fixed;
+      bottom: 10px;
       width: 100vw;
     }
 
