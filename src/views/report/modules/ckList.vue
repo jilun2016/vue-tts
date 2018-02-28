@@ -331,7 +331,7 @@
     .homeBox {
       position: fixed;
       width: 100%;
-      height: 87%;
+      height: 100%;
       top: 0;
       font-size: 14px;
       background-color: #F2F2F8;
@@ -401,6 +401,7 @@
       position: fixed;
       bottom: 10px;
       width: 100vw;
+      z-index: 10;
     }
 
     .img-list img{
