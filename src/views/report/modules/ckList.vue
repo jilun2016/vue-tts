@@ -201,6 +201,8 @@
                 }
               }
             })
+            //重置原始数据
+            window.location.reload()
           })
         },
         submitAll () {
