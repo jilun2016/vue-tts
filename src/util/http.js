@@ -109,6 +109,27 @@ export default {
       }
     )
   },
+  delete (url, data) {
+    return axios({
+      method: 'delete',
+      baseURL: BASE_API_URL,
+      url,
+      data: data,
+      timeout: 30000,
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+        'Content-Type': 'application/json;charset=utf-8'
+      }
+    }).then(
+      (response) => {
+        return checkStatus(response)
+      }
+    ).then(
+      (res) => {
+        return checkCode(res)
+      }
+    )
+  },
   get (url, params) {
     return axios({
       method: 'get',
