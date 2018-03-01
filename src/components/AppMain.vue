@@ -1,12 +1,16 @@
 <template>
   <div class="app-main">
-    <swiper :list="demo01_list" v-model="demo02_index" @on-index-change="demo01_onIndexChange"></swiper>
+    <div class="swipe-banner">
+        <mt-swipe :auto="4000">
+          <mt-swipe-item v-for="(item, i) in demo01_list" :key="i">
+            <img class="banner" :src="item.img" :alt="item.title">
+          </mt-swipe-item>
+        </mt-swipe>
+    </div>
   </div>
 </template>
 
 <script>
-  import { Swiper } from 'vux'
-
   const baseList = [{
     url: 'javascript:',
     img: 'https://static.vux.li/demo/1.jpg',
@@ -26,20 +30,16 @@
     data () {
       return {
         demo01_list: baseList,
-        demo02_index: 1,
-      }
-    },
-    components: {
-      Swiper
-    },
-    methods: {
-      demo01_onIndexChange (index) {
-        this.demo01_index = index
       }
     }
   }
 </script>
 
 <style scoped>
-
+  .swipe-banner{
+    height: 255px;
+  }
+  .banner{
+    width: 100%;
+  }
 </style>

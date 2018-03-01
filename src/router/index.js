@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+import AppMain from '@/components/AppMain'
 import TTS from '@/views/TTS'
 import check from '@/views/check'
 import wxerror from '@/views/error/wx-error'
@@ -20,6 +21,10 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
+    {
+      path: '/main',
+      component: AppMain
+    },
     {
       path: '/',
       component: TTS

@@ -9,38 +9,6 @@
       </el-amap>
     </div>
     <p hidden>location: lng = {{ lng }} lat = {{ lat }}</p>
-    <!-- <div class = "localtion">
-      <p >我的位置:</p>
-      <p style="color:gray;font-size:15px;">{{ address }}</p>
-      <el-form ref="form" :model="form" class="fromFront"  label-width="50px">
-        <hr />
-        <el-row :gutter="20">
-          <el-col  :span="18"  >
-          <el-button type="text" @click="dialogFormVisible = true" style="text-align:left; width:80vw;">
-            <font class = "localtion" > 备注：  </font> <font class = "localtion" color="gray">选填</font>
-          </el-button>
-          <el-dialog  :visible.sync="dialogFormVisible"  width = "80%" :show-close="dialogClose" >
-            <el-input type="textarea" :rows="4" placeholder="添加备注(选填)" v-model="textarea">
-            </el-input>
-            <div slot="footer" class="dialog-footer">
-              <el-button @click="dialogFormVisible = false">取 消</el-button>
-              <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
-            </div>
-          </el-dialog>
-          </el-col>
-          <el-col :span="18" style="text-align:right; width:20vw;"  v-loading.fullscreen.lock="fullscreenLoading">
-              <p v-if="imageUrl == ''">
-                <img src="../../assets/img/xiangji.png" @click="addImange()">
-              </p>
-              <p v-if="imageUrl !== ''">
-                <img :src="imgCropFilter(imageUrl)" @click="addImange()" >
-              </p>
-            <input type="file" id="fileElem" accept="image/*" @change="choosePhoto($event)" hidden/>
-          </el-col>
-        </el-row>
-        邮箱地址:<input class = "localtion" style="text-align:left; width:80vw;" type="text" v-model="checkEmail"  placeholder="请输入发送邮箱地址"><br>
-      </el-form>
-    </div> -->
     <div class = "localtion">
       <mt-cell class='mint-cell-address' title="我的位置">
         <span style="color: gray">{{ address }}</span>
@@ -90,14 +58,6 @@
     right: 10px;
     z-index: 1001;
   }
-  /* .fromFront .el-form-item{
-    margin:0px;
-    padding:0px;
-    background-color:#E7EAEB;
-    font-family:"微软雅黑","黑体","宋体";
-    font-size:50px;
-  } */
-
 </style>
 
 

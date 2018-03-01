@@ -3,18 +3,17 @@
     <!-- 导航 -->
     <div class="nav">
       <div class="matrix-nav">
-        <flexbox :gutter="0">
-          <flexbox-item v-for="(item, index) in navList" :key="index">
-            <shop-nav class="nva-icon" :title="item.title" :src="item.img" :link="item.url"></shop-nav>
-          </flexbox-item>
-        </flexbox>
+        <div class="row-flex">
+          <div class="row-flex-item" v-for="(item, index) in navList" :key="index">
+              <shop-nav class="nva-icon" :title="item.title" :src="item.img" :link="item.url"></shop-nav>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import { Swiper, SwiperItem, Cell, Marquee, MarqueeItem, Flexbox, FlexboxItem, Divider, Scroller } from 'vux'
   import ShopNav from '@/components/ShopNav'
 
   const navList = [{
@@ -42,16 +41,7 @@
       }
     },
     components: {
-      Swiper,
-      SwiperItem,
-      Cell,
-      Marquee,
-      MarqueeItem,
-      Flexbox,
-      FlexboxItem,
-      ShopNav,
-      Divider,
-      Scroller,
+      ShopNav
     },
     methods: {
       demo01_onIndexChange (index) {
@@ -69,7 +59,29 @@
   }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
+  .row-flex{
+    width: 100%;
+    text-align: left;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    display: -webkit-flex;
+    box-align: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+
+    .row-flex-item{
+      -webkit-box-flex: 1;
+      -ms-flex: 1;
+      flex: 1;
+      -webkit-flex: 1;
+      min-width: 20px;
+      width: 0%;
+    }
+  }
+
   .home {
     padding-bottom: 70px;
   }
