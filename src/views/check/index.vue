@@ -33,7 +33,7 @@
 </template>
 
 
-<style>
+<style scoped>
   .amap-page-container {
     height: 450px;
   }

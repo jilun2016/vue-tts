@@ -20,7 +20,7 @@
 </template>
 
 
-<style>
+<style scoped>
   .page-title {
     font-size: 20px;
     margin: 20px auto;
