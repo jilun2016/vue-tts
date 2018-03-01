@@ -42,7 +42,7 @@ function checkCode (res) {
   }
 
   // 如果未关注公众号 先关注公众号
-  if (res.data && res.data.errorCode && res.data.errorCode === 'T100004') {
+  if (res.data && res.data.errorCode && (res.data.errorCode === '1012' ||  res.data.errorCode === '1013')) {
     window.location.href =  '/static/qrCode.html'
     return
   }
