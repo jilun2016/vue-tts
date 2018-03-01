@@ -16,12 +16,12 @@ import {BASE_API_URL} from './baseUrl'
           var res = xhr.responseText;
           var result = eval("(" + res + ")");
           // alert(JSON.stringify(result))
-          if (result && result.data) {
-            timestamp = result.data.timestamp; // 必填，生成签名的时间戳
-            nonceStr = result.data.nonce; // 必填，生成签名的随机串
-            signature = result.data.signature; // 必填，签名
-            appId = result.data.appId;
-            shareUrl = result.data.url;
+          if (result && result) {
+            timestamp = result.timestamp; // 必填，生成签名的时间戳
+            nonceStr = result.nonce; // 必填，生成签名的随机串
+            signature = result.signature; // 必填，签名
+            appId = result.appId;
+            shareUrl = result.url;
           }
         }
       }
