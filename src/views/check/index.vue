@@ -9,7 +9,7 @@
       </el-amap>
     </div>
     <p hidden>location: lng = {{ lng }} lat = {{ lat }}</p>
-    <div class = "localtion">
+    <!-- <div class = "localtion">
       <p >我的位置:</p>
       <p style="color:gray;font-size:15px;">{{ address }}</p>
       <el-form ref="form" :model="form" class="fromFront"  label-width="50px">
@@ -40,11 +40,25 @@
         </el-row>
         邮箱地址:<input class = "localtion" style="text-align:left; width:80vw;" type="text" v-model="checkEmail"  placeholder="请输入发送邮箱地址"><br>
       </el-form>
-    </div>
-    <hr />
-    <p />
-    <div class="but-group">
-      <el-button type="primary" style="width:100vw;" @click.native="submit">成功按钮</el-button>
+    </div> -->
+    <div class = "localtion">
+      <mt-cell class='mint-cell-address' title="我的位置">
+        <span style="color: gray">{{ address }}</span>
+      </mt-cell>
+      <div class="addImange">
+        <p v-if="imageUrl == ''">
+            <img src="../../assets/img/xiangji.png" @click="addImange()">
+          </p>
+          <p v-if="imageUrl !== ''">
+            <img :src="imgCropFilter(imageUrl)" @click="addImange()" >
+          </p>
+        <input type="file" id="fileElem" accept="image/*" @change="choosePhoto($event)" hidden/>
+      </div>
+      <mt-field class="mint-cell-remark" label="备注" placeholder="添加备注(选填)" type="textarea" rows="2" v-modal="textarea"></mt-field>
+      <mt-field label="邮箱" placeholder="请输入邮箱" type="email" v-model="checkEmail"></mt-field>
+      <div class="but-group">
+        <mt-button type="primary" style="width:100vw;" @click.native="submit">成功按钮</mt-button>
+      </div>
     </div>
   </div>
 
@@ -53,7 +67,7 @@
 
 <style>
   .amap-page-container {
-    height: 500px;
+    height: 450px;
   }
   .el-button-primary .router-link{
     color:#fff;
@@ -64,14 +78,25 @@
     background-color:#E7EAEB;
     font-family: Consolas;
     font-size:18px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
   }
-  .fromFront .el-form-item{
+
+  .addImange{
+    position: absolute;
+    top: 47px;
+    right: 10px;
+    z-index: 1001;
+  }
+  /* .fromFront .el-form-item{
     margin:0px;
     padding:0px;
     background-color:#E7EAEB;
     font-family:"微软雅黑","黑体","宋体";
     font-size:50px;
-  }
+  } */
 
 </style>
 

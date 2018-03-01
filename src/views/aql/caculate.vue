@@ -10,7 +10,7 @@
         MIN AND MAJ:
         <mt-picker :slots="slots" @change="onValuesChange"  visibleItemCount=3 itemHeight=40></mt-picker>
         <hr />
-        <el-button type="primary" style="width:100vw;" @click.native="submit">计算</el-button>
+        <mt-button type="primary" style="width:100vw;" @click.native="submit">计算</mt-button>
       </mt-tab-container-item>
     </mt-tab-container>
 
