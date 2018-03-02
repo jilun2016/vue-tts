@@ -35,11 +35,13 @@
 
 <style scoped>
   .amap-page-container {
-    height: 450px;
+    /* height: 450px; */
+    height: 67vh;
   }
-  .el-button-primary .router-link{
+  .el-button-primary .router-link {
     color:#fff;
-    margin-right: 20px;}
+    margin-right: 20px;
+  }
   .localtion {
     margin:0px;
     padding:0px;
@@ -50,6 +52,12 @@
     bottom: 0;
     width: 100%;
     z-index: 1000;
+  }
+
+  @media only screen and (device-width: 375px) and (device-height:812px) and (-webkit-device-pixel-ratio:3) {
+    .localtion {
+      bottom: 44px;
+    }
   }
 
   .addImange{
@@ -64,8 +72,6 @@
 
 <script>
   import AMap from 'vue-amap';
-  import * as axios from 'axios';
-  const BASE_URL = 'https://tts.jilunxing.com/tts/v1';
   export default {
     data() {
       let self = this;
@@ -207,7 +213,7 @@
           };
           _this.fullscreenLoading=true;
           //提交给七牛处理
-          axios.post(BASE_URL+"/common/upload", formData,config).then((res) => {
+          _this.$ajax.post(_this.$BASE_URL + "/common/upload", formData,config).then((res) => {
             _this.imageUrl = res.data;
             _this.fullscreenLoading=false
           }).catch((err) => {
@@ -224,7 +230,7 @@
           checkEmail: _this.checkEmail,
           openId: '123'
         }
-        axios.post(BASE_URL+"/check", param).then((res) => {
+        _this.$ajax.post(_this.$BASE_URL + "/check", param).then((res) => {
         }).catch((err) => {
         })
       },
