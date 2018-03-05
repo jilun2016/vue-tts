@@ -3,18 +3,21 @@
     <div class="page-title">
       <mt-cell :title=caculateDesc></mt-cell>
     </div>
-    <mt-tab-container class="page-tabbar-tab-container" v-model="active" swipeable>
-      <mt-tab-container-item id="tab-container1">
-        SHIPPING LOT SIZE:  <mt-field type="number" v-model="shipSize"></mt-field>
-         <hr />
-        MIN AND MAJ:
-        <mt-picker :slots="slots" @change="onValuesChange"  visibleItemCount=3 itemHeight=40></mt-picker>
-        <hr />
-        <mt-button type="primary" style="width:100vw;" @click.native="submit">计算</mt-button>
-      </mt-tab-container-item>
-    </mt-tab-container>
-
-
+    <div class="page-title">
+      SHIPPING LOT SIZE: <input number="true" type="number" class="input">
+    </div>
+    <hr />
+    <div class="page-title2">
+    MAJOR Defects:
+    <mt-picker :slots="slots" @change="onValuesChange" :visibleItemCount=3></mt-picker>
+    </div>
+    <hr />
+    <div class="page-title2">
+    MINOR Defects:
+    <mt-picker :slots="slots" @change="onValuesChange" :visibleItemCount=3></mt-picker>
+    </div>
+    <hr />
+    <mt-button type="primary" style="width:100vw;" @click.native="submit">计算</mt-button>
   </div>
 
 </template>
@@ -27,6 +30,21 @@
     text-align: center;
     display: block;
     line-height: 1;
+  }
+  .page-title2 {
+    font-size: 20px;
+    margin: 20px auto;
+    text-align: left;
+    display: block;
+    line-height: 1;
+  }
+  .input{
+    border: 1px solid #ccc;
+    padding: 7px 0px;
+    border-radius: 3px; /*css3属性IE不支持*/
+    padding-left:5px;
+    font-size: 18px;
+    text-align: center;
   }
 </style>
 
@@ -47,16 +65,7 @@
             flex: 1,
             values: ['0.010', '0.015', '0.025', '0.040', '0.065'],
             className: 'slot1',
-            textAlign: 'right'
-          }, {
-            divider: true,
-            content: '-',
-            className: 'slot2'
-          }, {
-            flex: 1,
-            values: ['0.010', '0.015', '0.025', '0.040', '0.065'],
-            className: 'slot3',
-            textAlign: 'left'
+            textAlign: 'center'
           }
         ]
       };
