@@ -231,6 +231,7 @@
           openId: '123'
         }
         _this.$ajax.post(_this.$BASE_URL + "/check", param).then((res) => {
+
         }).catch((err) => {
         })
       },
